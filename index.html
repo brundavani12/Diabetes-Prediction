@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            text-align: center;
+            color: #00c6ff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #cccccc;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #2a2a2a;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #00c6ff;
+            outline: none;
+            box-shadow: 0 0 5px #00c6ff;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #00c6ff;
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #00a3cc;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #00ff9d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Diabetes Prediction</h2>
+
+    <form method="post" action="/predict">
+
+        <label>Number of Pregnancies:</label>
+        <input type="text" name="num_preg" value="{{ form_data.num_preg if form_data else '' }}">
+
+        <label>Glucose Concentration:</label>
+        <input type="text" name="glucose_conc" value="{{ form_data.glucose_conc if form_data else '' }}">
+
+        <label>Diastolic Blood Pressure:</label>
+        <input type="text" name="diastolic_bp" value="{{ form_data.diastolic_bp if form_data else '' }}">
+
+        <label>Insulin:</label>
+        <input type="text" name="insulin" value="{{ form_data.insulin if form_data else '' }}">
+
+        <label>BMI:</label>
+        <input type="text" name="bmi" value="{{ form_data.bmi if form_data else '' }}">
+
+        <label>Diabetes Pedigree Function:</label>
+        <input type="text" name="diab_pred" value="{{ form_data.diab_pred if form_data else '' }}">
+
+        <label>Age:</label>
+        <input type="text" name="age" value="{{ form_data.age if form_data else '' }}">
+
+        <label>Skin Thickness:</label>
+        <input type="text" name="skin" value="{{ form_data.skin if form_data else '' }}">
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
